@@ -50,7 +50,7 @@ Backup is an **unencrypted ZIP** named `Briefkasten_backup_MM-YYYY[_to_MM-YYYY].
 
 - `format`: `de.skyslycer.briefkasten.backup`; `version`: integer `1`.
 - Metadata: `appVersion`, UTC `createdAt`, IANA `timeZone`, `scope: "all_time"`, `encrypted: false`, `authenticationIncluded: false`.
-- `letters`: `id`, `account`, announcement `date`, epoch-ms `firstSeen`, `fileName`, `contentHash`, `occurrence`, `notificationPending`, nullable `groupId`, `original` ZIP path. Optional `cutout` with `cutoutVersion: 1`; `ocr` object with optional `full`/`cutout` paths and `ocrVersion: 8`.
+- `letters`: `id`, `account`, announcement `date`, epoch-ms `firstSeen`, `fileName`, `contentHash`, `occurrence`, `notificationPending`, nullable `groupId`, `received` (optional, defaults to false when absent), `original` ZIP path. Optional `cutout` with `cutoutVersion: 1`; `ocr` object with optional `full`/`cutout` paths and `ocrVersion: 8`.
 - `groups`: `id`, `name`, palette index `color`.
 - `sources`: source-key `source`, referenced `letterId` (URL aliases/deduplication).
 - `accounts`: `id`, `initialized` baseline flag.

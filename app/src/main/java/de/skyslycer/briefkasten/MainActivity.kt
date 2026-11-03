@@ -13,6 +13,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.selection.toggleable
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.semantics.Role
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.*
@@ -411,7 +413,28 @@ class MainActivity : FragmentActivity() {
                                 colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer)) {
                                 Envelope(letter, Modifier.fillMaxWidth(), cutout = true)
                                 Column(Modifier.padding(12.dp)) {
-                                    Text(formatEnvelopeDate(letter.date), fontWeight = FontWeight.Medium, maxLines = 1)
+                                    Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                                        Text(formatEnvelopeDate(letter.date), fontWeight = FontWeight.Medium,
+                                            maxLines = 1, modifier = Modifier.weight(1f))
+                                        Box(
+                                            Modifier
+                                                .size(24.dp)
+                                                .clip(RoundedCornerShape(50))
+                                                .toggleable(
+                                                    value = letter.received,
+                                                    role = Role.Checkbox,
+                                                    onValueChange = { value ->
+                                                        lifecycleScope.launch { app.database.archive().received(letter.id, value) }
+                                                    }
+                                                ),
+                                            contentAlignment = Alignment.Center
+                                        ) {
+                                            Icon(painterResource(R.drawable.ic_check), contentDescription = "Received",
+                                                modifier = Modifier.size(18.dp),
+                                                tint = if (letter.received) MaterialTheme.colorScheme.primary
+                                                    else Color(0xFF9E9E9E))
+                                        }
+                                    }
                                     Box(Modifier.fillMaxWidth().padding(top = 6.dp).height(28.dp)) {
                                         GroupTag(groups.firstOrNull { it.id == letter.groupId })
                                     }

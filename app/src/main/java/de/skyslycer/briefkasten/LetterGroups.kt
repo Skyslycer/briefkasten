@@ -17,6 +17,12 @@ val GROUP_MIGRATION = object : Migration(1, 2) {
     }
 }
 
+val RECEIVED_MIGRATION = object : Migration(2, 3) {
+    override fun migrate(db: SupportSQLiteDatabase) {
+        db.execSQL("ALTER TABLE letters ADD COLUMN received INTEGER NOT NULL DEFAULT 0")
+    }
+}
+
 fun normalizedGroupText(text: String): String = Normalizer.normalize(text, Normalizer.Form.NFKC)
     .lowercase(Locale.ROOT).replace(Regex("\\s+"), " ").trim()
 

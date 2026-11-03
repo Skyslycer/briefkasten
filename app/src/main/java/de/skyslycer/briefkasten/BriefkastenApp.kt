@@ -14,7 +14,7 @@ class BriefkastenApp : Application() {
     val cutouts by lazy { CutoutImages(vault) }
     val preferences by lazy { Preferences(this) }
     val auth by lazy { Auth(this, vault) }
-    val database by lazy { Room.databaseBuilder(this, ArchiveDatabase::class.java, "archive.db").addMigrations(GROUP_MIGRATION).build() }
+    val database by lazy { Room.databaseBuilder(this, ArchiveDatabase::class.java, "archive.db").addMigrations(GROUP_MIGRATION, RECEIVED_MIGRATION).build() }
     val notifications by lazy { LetterNotifications(this, cutouts) }
     val operation = Mutex()
     val groups by lazy { GroupIndexer(this) }

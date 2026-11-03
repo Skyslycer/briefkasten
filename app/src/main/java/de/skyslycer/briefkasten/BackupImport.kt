@@ -74,7 +74,7 @@ class BackupImport(private val app: BriefkastenApp,
             val letters = rows.map {
                 Letter(identifier(it.getString("id")), it.getString("account"), it.getString("date"), it.getLong("firstSeen"),
                     identifier(it.getString("fileName")), it.getString("contentHash"), it.getInt("occurrence"), false,
-                    if (it.isNull("groupId")) null else it.getString("groupId"))
+                    if (it.isNull("groupId")) null else it.getString("groupId"), it.optBoolean("received", false))
             }
             val sources = array("sources").map { Source(it.getString("source"), it.getString("letterId")) }
             require(groups.map { it.id }.distinct().size == groups.size && letters.map { it.id }.distinct().size == letters.size &&

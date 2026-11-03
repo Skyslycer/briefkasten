@@ -37,7 +37,7 @@ internal class ArchiveFixture(val app: BriefkastenApp) : AutoCloseable {
             ByteArrayOutputStream().use { bitmap.compress(Bitmap.CompressFormat.PNG, 100, it); it.toByteArray() }
         } finally { bitmap.recycle() }
         val letter = Letter("fixture", "fixture-account", "2026-10-24", 1792832400000,
-            "fixture.png", sha256(bytes), 1, false, "fixture-group")
+            "fixture.png", sha256(bytes), 1, false, "fixture-group", true)
         vault.write(letter.fileName, bytes)
         vault.write("fixture.ocr-v8-full", EnvelopeReadings("Musterbank").toJson().toByteArray())
         vault.write("fixture.cutout-v1", bytes)

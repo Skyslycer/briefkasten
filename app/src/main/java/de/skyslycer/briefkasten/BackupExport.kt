@@ -50,7 +50,7 @@ class BackupExport(private val app: BriefkastenApp,
                     val entry = JSONObject().put("id", letter.id).put("account", letter.account).put("date", letter.date)
                         .put("firstSeen", letter.firstSeen).put("fileName", letter.fileName).put("contentHash", letter.contentHash)
                         .put("occurrence", letter.occurrence).put("notificationPending", letter.notificationPending)
-                        .put("groupId", letter.groupId ?: JSONObject.NULL)
+                        .put("groupId", letter.groupId ?: JSONObject.NULL).put("received", letter.received)
                         .put("original", asset("originals/${letter.fileName}", bytes))
                     vault.read("${letter.id}.cutout-v1")?.let {
                         entry.put("cutout", asset("cutouts/${letter.id}.png", it)).put("cutoutVersion", 1)

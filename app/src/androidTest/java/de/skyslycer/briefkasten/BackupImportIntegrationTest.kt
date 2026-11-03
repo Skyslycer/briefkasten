@@ -54,6 +54,7 @@ class BackupImportIntegrationTest {
             }
             try {
                 assertEquals(1, fixture.importer.restore(uri(fixtureZip)))
+                assertTrue(fixture.database.archive().find(id)!!.received)
                 assertFalse(fixture.database.archive().find(id)!!.notificationPending)
                 assertArrayEquals(original, fixture.vault.read(name))
                 assertEquals(0, fixture.importer.restore(uri(fixtureZip)))

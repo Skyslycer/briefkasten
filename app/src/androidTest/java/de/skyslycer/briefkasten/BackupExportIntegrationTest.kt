@@ -35,6 +35,7 @@ class BackupExportIntegrationTest {
                     val letter = letters.single { it.id == record.getString("id") }
                     assertEquals(letter.firstSeen, record.getLong("firstSeen"))
                     assertEquals(letter.date, record.getString("date"))
+                    assertEquals(letter.received, record.getBoolean("received"))
                     assertArrayEquals(fixture.vault.read(letter.fileName), zip.getInputStream(zip.getEntry(record.getString("original"))).readBytes())
                 }
                 val assets = manifest.getJSONArray("assets")

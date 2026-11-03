@@ -97,7 +97,8 @@ data class Letter(
     val contentHash: String,
     val occurrence: Int,
     val notificationPending: Boolean,
-    val groupId: String? = null
+    val groupId: String? = null,
+    @ColumnInfo(defaultValue = "0") val received: Boolean = false
 )
 @Entity(tableName = "sources")
 data class Source(@PrimaryKey val source: String, val letterId: String)
@@ -109,6 +110,7 @@ interface ArchiveDao {
     @Query("SELECT * FROM sources ORDER BY source") suspend fun allSources(): List<Source>
     @Query("SELECT * FROM accounts ORDER BY id") suspend fun allAccounts(): List<Account>
     @Query("UPDATE letters SET groupId = :groupId WHERE id = :id") suspend fun assignGroup(id: String, groupId: String?)
+    @Query("UPDATE letters SET received = :received WHERE id = :id") suspend fun received(id: String, received: Boolean)
     @Query("SELECT * FROM letter_groups ORDER BY name COLLATE NOCASE") fun observeGroups(): kotlinx.coroutines.flow.Flow<List<LetterGroup>>
     @Query("SELECT * FROM letter_groups ORDER BY id") suspend fun groups(): List<LetterGroup>
     @Insert(onConflict = OnConflictStrategy.REPLACE) suspend fun saveGroup(group: LetterGroup)
@@ -125,7 +127,7 @@ interface ArchiveDao {
     @Query("SELECT * FROM letters WHERE notificationPending = 1 AND account = :account") suspend fun pending(account: String): List<Letter>
 }
 
-@Database(entities = [Letter::class, Source::class, Account::class, LetterGroup::class], version = 2, exportSchema = false)
+@Database(entities = [Letter::class, Source::class, Account::class, LetterGroup::class], version = 3, exportSchema = false)
 abstract class ArchiveDatabase : RoomDatabase() {
     abstract fun archive(): ArchiveDao
 }
