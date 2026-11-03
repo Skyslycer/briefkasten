@@ -1,0 +1,15 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp" android:viewportWidth="108" android:viewportHeight="108">
+    <!-- A letter slipping into the archive, with a warm postage-stamp accent. -->
+    <path android:fillColor="#214634" android:pathData="M32,67h44v10H32z" />
+    <group android:rotation="-12" android:pivotX="54" android:pivotY="47">
+        <path android:fillColor="#FBF7E9" android:pathData="M37,30h34a4,4 0,0 1,4 4v24a4,4 0,0 1,-4 4H37a4,4 0,0 1,-4 -4V34a4,4 0,0 1,4 -4" />
+        <path android:fillColor="@android:color/transparent" android:strokeColor="#38654B"
+            android:strokeWidth="2.4" android:strokeLineCap="round" android:strokeLineJoin="round"
+            android:pathData="M35,33l17,13q2,1.5 4,0l17,-13" />
+        <path android:fillColor="#DAA45E" android:pathData="M63,50h7v7h-7z" />
+    </group>
+    <path android:fillColor="@android:color/transparent" android:strokeColor="#FBF7E9"
+        android:strokeWidth="4" android:strokeLineCap="round" android:strokeLineJoin="round"
+        android:pathData="M30,66v9q0,3 3,3h42q3,0 3,-3v-9" />
+</vector>

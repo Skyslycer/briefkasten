@@ -1,0 +1,44 @@
+# Gradle, Kotlin and machine-local Android tooling
+.gradle/
+.kotlin/
+.tooling/
+**/build/
+local.properties
+local.*.properties
+
+# Local helpers, IDE state and generated review files
+/emulator.sh
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+/screenshots/
+/output/
+/tmp/
+*.log
+*.hprof
+
+# Packages, portable exports and private app data
+*.apk
+*.apkm
+*.apks
+*.aab
+*.zip
+*.db
+*.db-shm
+*.db-wal
+
+# Signing keys and local credentials (keep gradle-wrapper.jar tracked)
+*.jks
+*.keystore
+*.p12
+*.pfx
+*.pem
+*.key
+.env
+.env.*
+!.env.example
+keystore.properties
+signing.properties
+credentials.properties
